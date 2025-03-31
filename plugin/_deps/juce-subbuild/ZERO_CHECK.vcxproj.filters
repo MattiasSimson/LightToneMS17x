@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\59b5e8b58114b8f8f2bd5b1d51044281\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E246D387-8DEF-3022-935F-7FCD95F75128}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

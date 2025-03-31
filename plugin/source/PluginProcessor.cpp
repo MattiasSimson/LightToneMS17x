@@ -19,6 +19,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::c
     layout.add(std::make_unique<juce::AudioParameterFloat>("rightHighMid", "Right High-Mid", -24.0f, 24.0f, 0.0f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("rightHigh", "Right High", -24.0f, 24.0f, 0.0f));
 
+    // Sync parameter
+    layout.add(std::make_unique<juce::AudioParameterBool>("sync", "Sync", false));
+
+    // Wet/Dry mix parameter
+    layout.add(std::make_unique<juce::AudioParameterFloat>("mix", "Mix", 0.0f, 100.0f, 100.0f));
+
     return layout;
 }
 
@@ -125,11 +131,6 @@ void AudioPluginAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     auto totalNumInputChannels = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    // Debug: Print input levels
-    float leftInputLevel = buffer.getMagnitude(0, 0, buffer.getNumSamples());
-    float rightInputLevel = buffer.getMagnitude(1, 0, buffer.getNumSamples());
-    juce::Logger::writeToLog(juce::String::formatted("Input levels - Left: %.6f, Right: %.6f", leftInputLevel, rightInputLevel));
-
     // Clear any output channels that don't contain input data
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
@@ -137,6 +138,11 @@ void AudioPluginAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     // Create audio block for both channels
     juce::dsp::AudioBlock<float> block(buffer);
     juce::dsp::ProcessContextReplacing<float> context(block);
+
+    // Store original audio for wet/dry mix
+    juce::AudioBuffer<float> dryBuffer(buffer.getNumChannels(), buffer.getNumSamples());
+    dryBuffer.copyFrom(0, 0, buffer, 0, 0, buffer.getNumSamples());
+    dryBuffer.copyFrom(1, 0, buffer, 1, 0, buffer.getNumSamples());
 
     // Get current parameter values
     float leftLowGain = apvts.getRawParameterValue("leftLow")->load();
@@ -148,6 +154,47 @@ void AudioPluginAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     float rightLowMidGain = apvts.getRawParameterValue("rightLowMid")->load();
     float rightHighMidGain = apvts.getRawParameterValue("rightHighMid")->load();
     float rightHighGain = apvts.getRawParameterValue("rightHigh")->load();
+
+    // Get wet/dry mix value
+    float mixValue = apvts.getRawParameterValue("mix")->load() / 100.0f;
+
+    // Check if sync is enabled
+    bool syncEnabled = apvts.getRawParameterValue("sync")->load() > 0.5f;
+    isSynced = syncEnabled;
+
+    // If sync is enabled, use the last changed value for both channels
+    if (syncEnabled) {
+        // Update last changed values if either channel changed
+        if (leftLowGain != rightLowGain) {
+            lastLowGain = (leftLowGain != lastLowGain) ? leftLowGain : rightLowGain;
+        }
+        if (leftLowMidGain != rightLowMidGain) {
+            lastLowMidGain = (leftLowMidGain != lastLowMidGain) ? leftLowMidGain : rightLowMidGain;
+        }
+        if (leftHighMidGain != rightHighMidGain) {
+            lastHighMidGain = (leftHighMidGain != lastHighMidGain) ? leftHighMidGain : rightHighMidGain;
+        }
+        if (leftHighGain != rightHighGain) {
+            lastHighGain = (leftHighGain != lastHighGain) ? leftHighGain : rightHighGain;
+        }
+
+        // Apply the last changed values to both channels
+        leftLowGain = rightLowGain = lastLowGain;
+        leftLowMidGain = rightLowMidGain = lastLowMidGain;
+        leftHighMidGain = rightHighMidGain = lastHighMidGain;
+        leftHighGain = rightHighGain = lastHighGain;
+
+        // Update the parameter values to ensure the UI reflects the changes
+        apvts.getParameter("leftLow")->setValueNotifyingHost(apvts.getParameterRange("leftLow").convertTo0to1(lastLowGain));
+        apvts.getParameter("leftLowMid")->setValueNotifyingHost(apvts.getParameterRange("leftLowMid").convertTo0to1(lastLowMidGain));
+        apvts.getParameter("leftHighMid")->setValueNotifyingHost(apvts.getParameterRange("leftHighMid").convertTo0to1(lastHighMidGain));
+        apvts.getParameter("leftHigh")->setValueNotifyingHost(apvts.getParameterRange("leftHigh").convertTo0to1(lastHighGain));
+
+        apvts.getParameter("rightLow")->setValueNotifyingHost(apvts.getParameterRange("rightLow").convertTo0to1(lastLowGain));
+        apvts.getParameter("rightLowMid")->setValueNotifyingHost(apvts.getParameterRange("rightLowMid").convertTo0to1(lastLowMidGain));
+        apvts.getParameter("rightHighMid")->setValueNotifyingHost(apvts.getParameterRange("rightHighMid").convertTo0to1(lastHighMidGain));
+        apvts.getParameter("rightHigh")->setValueNotifyingHost(apvts.getParameterRange("rightHigh").convertTo0to1(lastHighGain));
+    }
 
     // Convert dB values to linear gain
     float leftLowGainLinear = std::pow(10.0f, leftLowGain / 20.0f);
@@ -187,10 +234,14 @@ void AudioPluginAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     rightHighMidFilter.process(rightContext);
     rightHighFilter.process(rightContext);
 
-    // Debug: Print output levels
-    float leftOutputLevel = buffer.getMagnitude(0, 0, buffer.getNumSamples());
-    float rightOutputLevel = buffer.getMagnitude(1, 0, buffer.getNumSamples());
-    juce::Logger::writeToLog(juce::String::formatted("Output levels - Left: %.6f, Right: %.6f", leftOutputLevel, rightOutputLevel));
+    // Apply wet/dry mix
+    for (int channel = 0; channel < buffer.getNumChannels(); ++channel) {
+        for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+            float wetSample = buffer.getSample(channel, sample);
+            float drySample = dryBuffer.getSample(channel, sample);
+            buffer.setSample(channel, sample, wetSample * mixValue + drySample * (1.0f - mixValue));
+        }
+    }
 }
 
 bool AudioPluginAudioProcessor::hasEditor() const {

@@ -4,13 +4,15 @@
 
 namespace audio_plugin {
 
-class AudioPluginAudioProcessorEditor : public juce::AudioProcessorEditor {
+class AudioPluginAudioProcessorEditor : public juce::AudioProcessorEditor,
+                                      public juce::AudioProcessorValueTreeState::Listener {
 public:
   explicit AudioPluginAudioProcessorEditor(AudioPluginAudioProcessor&);
   ~AudioPluginAudioProcessorEditor() override;
 
   void paint(juce::Graphics&) override;
   void resized() override;
+  void parameterChanged(const juce::String& parameterID, float newValue) override;
 
 private:
   // This reference is provided as a quick way for your editor to
@@ -36,6 +38,15 @@ private:
   std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> rightLowMidAttachment;
   std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> rightHighMidAttachment;
   std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> rightHighAttachment;
+
+  // Mix knob
+  juce::Slider mixKnob;
+  std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mixAttachment;
+
+  // Sync button
+  juce::TextButton syncButton{"Sync"};
+  std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> syncAttachment;
+  bool isSynced = false;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioPluginAudioProcessorEditor)
 };

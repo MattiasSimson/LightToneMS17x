@@ -36,6 +36,12 @@ public:
   void getStateInformation(juce::MemoryBlock& destData) override;
   void setStateInformation(const void* data, int sizeInBytes) override;
 
+  // Public getters for last gain values
+  float getLastLowGain() const { return lastLowGain; }
+  float getLastLowMidGain() const { return lastLowMidGain; }
+  float getLastHighMidGain() const { return lastHighMidGain; }
+  float getLastHighGain() const { return lastHighGain; }
+
   juce::AudioProcessorValueTreeState apvts;
 
 private:
@@ -50,6 +56,15 @@ private:
   juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>> rightLowMidFilter;
   juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>> rightHighMidFilter;
   juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>> rightHighFilter;
+
+  // Sync parameter
+  std::atomic<bool> isSynced{false};
+
+  // Track last changed values for each frequency band
+  float lastLowGain{0.0f};
+  float lastLowMidGain{0.0f};
+  float lastHighMidGain{0.0f};
+  float lastHighGain{0.0f};
 
   juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 

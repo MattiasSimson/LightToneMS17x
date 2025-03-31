@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/juce-populate"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/59b5e8b58114b8f8f2bd5b1d51044281/juce-populate.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/e1b22b2b23c652cdbdc6d7aa604875cd/juce-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/Mattias Simson/KoodJhvi/PLUGINS/audio-plugin-starter/audio-plugin-template/plugin/_deps/juce-subbuild/CMakeFiles/a1f3f6c7fccd4cd61997a2c9a0776430/juce-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"juce-populate"
+		],
+		"name" : "juce-populate"
+	}
+}

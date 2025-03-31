@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\a1f3f6c7fccd4cd61997a2c9a0776430\juce-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\e1b22b2b23c652cdbdc6d7aa604875cd\juce-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\59b5e8b58114b8f8f2bd5b1d51044281\juce-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Mattias Simson\KoodJhvi\PLUGINS\audio-plugin-starter\audio-plugin-template\plugin\_deps\juce-subbuild\CMakeFiles\juce-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E246D387-8DEF-3022-935F-7FCD95F75128}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

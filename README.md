@@ -73,3 +73,71 @@ Don't forget to change "YourPluginName" to, well, your plugin name everywhere ðŸ
 See how I create this template step by step in this video:
 
 [![Audio plugin template tutorial video](http://img.youtube.com/vi/Uq7Hwt18s3s/0.jpg)](https://www.youtube.com/watch?v=Uq7Hwt18s3s "Audio plugin template tutorial video")
+
+# LightTone MS-17x
+
+A professional-grade stereo EQ plugin with independent left and right channel controls. Built with JUCE framework.
+
+## Features
+
+- 4-band EQ per channel (8 bands total)
+- Independent left and right channel control
+- Frequency bands:
+  - Low: 100Hz (low shelf)
+  - Low-Mid: 400Hz (peak)
+  - High-Mid: 2kHz (peak)
+  - High: 8kHz (high shelf)
+- Gain range: -24dB to +24dB
+- Q factor: 0.7 (for peak filters)
+- Real-time parameter control
+- VST3 format support
+
+## Building from Source
+
+### Prerequisites
+
+- CMake 3.16 or higher
+- C++17 compatible compiler
+- JUCE framework (automatically downloaded via CMake)
+
+### Build Instructions
+
+1. Clone the repository:
+```bash
+git clone https://github.com/MattiasSimson/LightToneMS17x.git
+cd LightToneMS17x
+```
+
+2. Create and enter build directory:
+```bash
+mkdir build
+cd build
+```
+
+3. Configure with CMake:
+```bash
+cmake ..
+```
+
+4. Build the project:
+```bash
+cmake --build .
+```
+
+The built VST3 plugin will be available in the `build/plugin/AudioPlugin_artefacts/Debug/VST3/` directory.
+
+## Usage
+
+1. Load the plugin in your DAW
+2. Use the left knobs to control the left channel EQ
+3. Use the right knobs to control the right channel EQ
+4. Each frequency band can be adjusted independently
+5. The plugin supports both mono and stereo input/output
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Author
+
+Mattias Simson
