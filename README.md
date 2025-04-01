@@ -104,8 +104,8 @@ A professional-grade stereo EQ plugin with independent left and right channel co
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/MattiasSimson/LightToneMS17x.git
-cd LightToneMS17x
+git clone https://github.com/MattiasSimson/LightToneMS18x.git
+cd LightToneMS18x
 ```
 
 2. Create and enter build directory:

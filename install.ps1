@@ -2,7 +2,7 @@
 $currentDir = $PSScriptRoot
 
 # Define source and destination paths
-$sourcePath = Join-Path $currentDir "vs-build\plugin\AudioPlugin_artefacts\Debug\VST3\YourPluginName.vst3"
+$sourcePath = Join-Path $currentDir "vs-build\plugin\AudioPlugin_artefacts\Debug\VST3\LightTone MS-18x.vst3"
 $destPath = "C:\Program Files\Common Files\VST3"
 
 # Check if source exists
@@ -23,4 +23,4 @@ Write-Host "Installing VST3 plugin..."
 Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force
 
 Write-Host "Installation complete! The plugin has been installed to:"
-Write-Host (Join-Path $destPath "YourPluginName.vst3") 
+Write-Host (Join-Path $destPath "LightTone MS-18x.vst3") 
